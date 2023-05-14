@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>URL Validation Form</title>
+<script>
+function validateURL() {
+    var urlInput = document.getElementById('url').value;
+    try {
+        new URL(urlInput);
+        alert("Valid URL");
+    } catch (_) {
+        alert("Invalid URL");
+    }
+}
+</script>
+</head>
+<body>
+<form>
+    <label for="url">URL:</label><br>
+    <input type="text" id="url" name="url"><br>
+    <input type="button" value="Validate URL" onclick="validateURL()">
+</form>
+</body>
+</html>
