@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>URL Validation Form</title>
+<script>
+function validateURL() {
+    var url = document.getElementById('url').value;
+
+    // Regex for each part of the URL
+    var protocolOk = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?/.test(url);
+    var domainOk = /[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/.test(url);
+    var portOk = /(:[0-9]{1,5})?/.test(url);
+    var pathOk = /(\/.*)?$/.test(url);
+
+    var error = "";
+
+    if (!protocolOk) {
+        error += "URL is missing or has an incorrect protocol (http:// or https://).\n";
+    }
+    if (!domainOk) {
+        error += "URL is missing or has an incorrect domain.\n";
+    }
+    if (!portOk) {
+        error += "URL has an incorrect port.\n";
+    }
+    if (!pathOk) {
+        error += "URL has an incorrect path.\n";
+    }
+
+    if (error === "") {
+        alert("Valid URL");
+    } else {
+        alert("Invalid URL:\n" + error);
+    }
+}
+</script>
+</head>
+<body>
+<form>
+    <label for="url">URL:</label><br>
+    <input type="text" id="url" name="url"><br>
+    <input type="button" value="Validate URL" onclick="validateURL()">
+</form>
+</body>
+</html>
